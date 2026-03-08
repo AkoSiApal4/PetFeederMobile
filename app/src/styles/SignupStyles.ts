@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
 
   button: {
     width: "100%",
-    backgroundColor: "#2E7D32",
+    backgroundColor: "#2aa8a1",
     padding: 14,
     borderRadius: 8,
     alignItems: "center",
@@ -63,6 +63,6 @@ export const styles = StyleSheet.create({
 
   link: {
     marginTop: 15,
-    color: "#2E7D32",
+    color: "#2aa8a1",
   },
 });

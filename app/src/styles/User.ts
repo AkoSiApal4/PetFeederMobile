@@ -13,16 +13,17 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderBottomWidth: 1,
     borderBottomColor: "#e5e7eb",
+    marginTop: 35,
   },
   headerLeft: {
     flex: 1,
   },
   title: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
   },
   welcome: {
-    fontSize: 10,
+    fontSize: 16,
     color: "#666",
   },
   headerRight: {
