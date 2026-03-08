@@ -1,6 +1,15 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation, type NavigationProp } from "@react-navigation/native";
 import React, { useState } from "react";
-import { Image, ImageBackground, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+    Alert,
+    Image,
+    ImageBackground,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
+} from "react-native";
 import { styles } from "../styles/SignupStyles";
 
 type RootStackParamList = {
@@ -17,20 +26,40 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  return (
-	/* Backgrund */
-    <ImageBackground source={require("../assets/Bg.png")} 
-	style={styles.backgroundImage}>
+  const handleSignup = async () => {
+    if (!username || !email || !password) {
+      Alert.alert("Please fill in all fields.");
+      return;
+    }
 
+    const usersJson = await AsyncStorage.getItem("users");
+    const users = usersJson ? JSON.parse(usersJson) : [];
+
+    const existingUser = users.find((user: any) => user.email === email);
+    if (existingUser) {
+      Alert.alert("Email already registered.");
+      return;
+    }
+
+    const newUser = { username, email, password };
+    users.push(newUser);
+    await AsyncStorage.setItem("users", JSON.stringify(users));
+
+    Alert.alert("Account created successfully!", "Please log in.");
+    navigation.navigate("Login");
+  };
+
+  return (
+    /* Backgrund */
+    <ImageBackground
+      source={require("../assets/Bg.png")}
+      style={styles.backgroundImage}
+    >
       {/* Main container */}
       <View style={styles.container}>
         <View style={styles.signupCard}>
-
           {/* Logo */}
-          <Image
-            source={require("../assets/Logo.png")} 
-            style={styles.logo}
-          />
+          <Image source={require("../assets/Logo.png")} style={styles.logo} />
 
           {/* Title */}
           <Text style={styles.title}>Create Account</Text>
@@ -65,7 +94,7 @@ export default function Signup() {
           </View>
 
           {/* Create Account Button */}
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={handleSignup}>
             <Text style={styles.buttonText}>Create Account</Text>
           </TouchableOpacity>
 
@@ -73,7 +102,6 @@ export default function Signup() {
           <TouchableOpacity onPress={() => navigation.navigate("Login")}>
             <Text style={styles.link}>Back to Login</Text>
           </TouchableOpacity>
-
         </View>
       </View>
     </ImageBackground>
