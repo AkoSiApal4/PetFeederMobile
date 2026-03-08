@@ -84,8 +84,9 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     gap: 8,
   },
+
   rememberText: {
-    marginLeft: 8,
+    marginRight: 5,
   },
   forgot: {
     color: "#060606",
