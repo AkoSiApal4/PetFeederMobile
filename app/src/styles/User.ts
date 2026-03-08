@@ -18,11 +18,11 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "bold",
   },
   welcome: {
-    fontSize: 16,
+    fontSize: 10,
     color: "#666",
   },
   headerRight: {
@@ -183,5 +183,26 @@ export const styles = StyleSheet.create({
     backgroundColor: "#6c757d",
     borderRadius: 5,
     alignItems: "center",
+  },
+
+  topActions: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    backgroundColor: "#fff",
+  },
+
+  actionBtn: {
+    marginLeft: 15,
+    padding: 8,
+    borderRadius: 8,
+    backgroundColor: "#f1f1f1",
+  },
+
+  content: {
+    flex: 1,
+    padding: 20,
   },
 });

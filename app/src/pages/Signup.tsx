@@ -2,13 +2,16 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation, type NavigationProp } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
-    Alert,
-    Image,
-    ImageBackground,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  Alert,
+  Image,
+  ImageBackground,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { styles } from "../styles/SignupStyles";
 
@@ -50,60 +53,66 @@ export default function Signup() {
   };
 
   return (
-    /* Backgrund */
     <ImageBackground
       source={require("../assets/Bg.png")}
       style={styles.backgroundImage}
+      resizeMode="cover"
     >
-      {/* Main container */}
-      <View style={styles.container}>
-        <View style={styles.signupCard}>
-          {/* Logo */}
-          <Image source={require("../assets/Logo.png")} style={styles.logo} />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        style={{ flex: 1 }}
+      >
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+          <View style={styles.container}>
+            <View style={styles.signupCard}>
+              <Image
+                source={require("../assets/Logo.png")}
+                style={styles.logo}
+                resizeMode="contain"
+              />
 
-          {/* Title */}
-          <Text style={styles.title}>Create Account</Text>
+              <Text style={styles.title}>Create Account</Text>
 
-          {/* Input fields */}
-          <View style={styles.inputWrapper}>
-            <TextInput
-              placeholder="Username"
-              style={styles.input}
-              value={username}
-              onChangeText={setUsername}
-            />
+              <View style={styles.inputWrapper}>
+                <TextInput
+                  placeholder="Username"
+                  style={styles.input}
+                  value={username}
+                  onChangeText={setUsername}
+                />
+              </View>
+
+              <View style={styles.inputWrapper}>
+                <TextInput
+                  placeholder="Email"
+                  style={styles.input}
+                  value={email}
+                  onChangeText={setEmail}
+                  keyboardType="email-address"
+                />
+              </View>
+
+              <View style={styles.inputWrapper}>
+                <TextInput
+                  placeholder="Password"
+                  style={styles.input}
+                  secureTextEntry
+                  value={password}
+                  onChangeText={setPassword}
+                />
+              </View>
+
+              <TouchableOpacity style={styles.button} onPress={handleSignup}>
+                <Text style={styles.buttonText}>Create Account</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                <Text style={styles.link}>Back to Login</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-
-          <View style={styles.inputWrapper}>
-            <TextInput
-              placeholder="Email"
-              style={styles.input}
-              value={email}
-              onChangeText={setEmail}
-            />
-          </View>
-
-          <View style={styles.inputWrapper}>
-            <TextInput
-              placeholder="Password"
-              style={styles.input}
-              secureTextEntry
-              value={password}
-              onChangeText={setPassword}
-            />
-          </View>
-
-          {/* Create Account Button */}
-          <TouchableOpacity style={styles.button} onPress={handleSignup}>
-            <Text style={styles.buttonText}>Create Account</Text>
-          </TouchableOpacity>
-
-          {/* Back to Login */}
-          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-            <Text style={styles.link}>Back to Login</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </ImageBackground>
   );
 }

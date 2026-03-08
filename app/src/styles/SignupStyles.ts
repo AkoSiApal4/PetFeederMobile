@@ -1,81 +1,68 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
+
+const { width } = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+  },
+
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 30,
+    padding: 20,
   },
 
   signupCard: {
-    width: "100%",
-    maxWidth: 420,
+    width: width > 600 ? 400 : "100%", // responsive card width
     backgroundColor: "white",
-    paddingVertical: 40,
-    paddingHorizontal: 30,
-    borderRadius: 16,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 20 },
-    shadowOpacity: 0.3,
-    shadowRadius: 60,
-    elevation: 10,
+    padding: 25,
+    borderRadius: 15,
     alignItems: "center",
   },
 
+  logo: {
+    width: 120,
+    height: 120,
+    marginBottom: 10,
+  },
+
   title: {
-    marginBottom: 25,
-    fontSize: 18,
-    color: "#666",
-    fontWeight: "500",
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
   },
 
   inputWrapper: {
     width: "100%",
-    marginBottom: 16,
+    marginBottom: 15,
   },
 
   input: {
     width: "100%",
-    borderWidth: 2,
-    borderColor: "#2aa8a1",
-    borderRadius: 10,
-    padding: 14,
-    fontSize: 14,
-    backgroundColor: "#ffffff",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    padding: 12,
+    borderRadius: 8,
   },
 
   button: {
-    backgroundColor: "#2aa8a1",
-    paddingVertical: 14,
-    borderRadius: 10,
     width: "100%",
+    backgroundColor: "#2E7D32",
+    padding: 14,
+    borderRadius: 8,
     alignItems: "center",
     marginTop: 10,
   },
 
   buttonText: {
     color: "white",
-    fontWeight: "600",
-    fontSize: 15,
+    fontWeight: "bold",
   },
 
   link: {
-    marginTop: 20,
-    color: "#2aa8a1",
-  },
-
-  backgroundImage: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-  },
-
-  logo: {
-    width: 120,
-    height: 120,
-    marginBottom: 35,
-    borderRadius: 10,
-    resizeMode: "cover",
+    marginTop: 15,
+    color: "#2E7D32",
   },
 });

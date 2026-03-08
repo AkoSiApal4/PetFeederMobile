@@ -318,24 +318,20 @@ export default function User() {
           <Text style={styles.title}>Smart Pet Feeder System</Text>
           <Text style={styles.welcome}>Welcome, {currentUser}</Text>
         </View>
+      </View>
 
-        <View style={styles.headerRight}>
-          {/* Notification Button */}
-          <TouchableOpacity
-            style={styles.notificationButton}
-            onPress={() => setShowNotifications(true)}
-          >
-            <Text>🔔 ({notifications.length})</Text>
-          </TouchableOpacity>
+      <View style={styles.topActions}>
+        <TouchableOpacity style={styles.actionBtn}>
+          <Text>🔔 Notification</Text>
+        </TouchableOpacity>
 
-          {/* Profile Button */}
-          <TouchableOpacity
-            style={styles.profileButton}
-            onPress={() => setShowDropdown(true)}
-          >
-            <Text>{currentUser} ⌄</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity style={styles.actionBtn}>
+          <Text>👤 Profile</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{ flex: 1 }}>
+        {/* Rest of Screen */}
+        <View style={styles.content}>{/* dashboard cards etc */}</View>
       </View>
 
       {/* Device Status */}
